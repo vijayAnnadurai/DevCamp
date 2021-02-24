@@ -5,10 +5,11 @@
 
 
 <% @portfolio_items.each do |item| %>
-<p><%= link_to item.title, portfolio_path(item) %></p>
+<p><%= link_to item.title, portfolio_path(item.id) %></p>
 <p><%= item.subtitle %></p>
 <p><%= item.body %></p>
 <%= image_tag item.thumb_image unless item.thumb_image.nil? %>
 
 <%= link_to "edit item", edit_portfolio_path(item.id) %>
+ <%= link_to 'Delete Portfolio Item', portfolio_path(item.id), method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

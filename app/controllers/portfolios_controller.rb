@@ -1,5 +1,5 @@
 class PortfoliosController < ApplicationController
-  before_action :set_portfolio, only: [:new, :edit, :update, :show]
+  before_action :set_portfolio, only: [ :edit, :update, :show, :destroy]
   def index
    @portfolio_items = Portfolio.all
   end
@@ -42,6 +42,14 @@ class PortfoliosController < ApplicationController
 
   def portfolio_params
       params.require(:portfolio).permit(:title, :subtitle, :body)
+  end
+
+  def destroy
+  	@portfolio_item.destroy
+
+  	respond_to do |format|
+  		format.html { redirect_to portfolios_path, notice: 'portfolio record is deleted'}
+  	end
   end
 
 end
